@@ -162,7 +162,7 @@ module Padrino
           object.send(fieldname).each { |x|
             content << %Q{<li><a class="popup" href="#{@template.url(:edit, :popup => true, :model => assoc.class_name, :id => x.id)}">#{x.send(lookup_method)}</a></li>}
           }
-          content << %Q{<li><a class="btn btn-default popup" href="#{@template.url(:new, :popup => true, :model => assoc.class_name, :"#{(assoc.inverse_of || model).to_s.underscore}_id" => object.id)}"><i class="fa fa-pencil"></i> New #{fieldname.to_s.singularize.humanize.downcase}</a></li>}
+          content << %Q{<li><a class="btn btn-default popup" href="#{@template.url(:new, :popup => true, :model => assoc.class_name, :"#{assoc.inverse_of.class_name.underscore}_id" => object.id)}"><i class="fa fa-pencil"></i> New #{fieldname.to_s.singularize.humanize.downcase}</a></li>}
           content << %Q{</ul>} 
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)                         
         end        

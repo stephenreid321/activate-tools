@@ -150,17 +150,17 @@ module Padrino
         
         # Lookups and collections
                                     
-        def lookup_block(fieldname, selected: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def lookup_block(fieldname, lookup_method: nil, selected: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           assoc = model.reflect_on_all_associations(:belongs_to).find { |assoc| assoc.foreign_key == fieldname.to_s }
-          content = select(fieldname, :class => 'form-control', :options => ['']+assoc.class_name.constantize.all.map { |x| [x.send(assoc.class_name.constantize.send(:lookup)), x.id] }, :selected => (selected || object.send(fieldname)), :disabled => disabled)
+          content = select(fieldname, :class => 'form-control', :options => ['']+assoc.class_name.constantize.all.map { |x| [x.send(lookup_method), x.id] }, :selected => (selected || object.send(fieldname)), :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
-        end        
+        end         
         
-        def collection_block(fieldname, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def collection_block(fieldname, lookup_method: nil, tip: nil, hint: nil, label_class: nil, div_class: nil)
           assoc = model.reflect_on_all_associations(:has_many).find { |assoc| assoc.name == fieldname.to_sym }
           content = %Q{<ul class="list-unstyled">}
           object.send(fieldname).each { |x|
-            content << %Q{<li><a class="popup" href="#{@template.url(:edit, :popup => true, :model => assoc.class_name, :id => x.id)}">#{x.send(assoc.class_name.constantize.send(:lookup))}</a></li>}
+            content << %Q{<li><a class="popup" href="#{@template.url(:edit, :popup => true, :model => assoc.class_name, :id => x.id)}">#{x.send(lookup_method)}</a></li>}
           }
           content << %Q{<li><a class="btn btn-default popup" href="#{@template.url(:new, :popup => true, :model => assoc.class_name, :"#{(assoc.inverse_of || model).to_s.underscore}_id" => object.id)}"><i class="fa fa-pencil"></i> New #{fieldname.to_s.singularize.humanize.downcase}</a></li>}
           content << %Q{</ul>} 

@@ -178,6 +178,22 @@ module Padrino
         # Block layout
         
         def block_layout(fieldname, content, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          
+          tip = if tip
+            tip
+          elsif object.new_record? and model.respond_to?(:new_tips) and model.new_tips[fieldname]
+            model.new_tips[fieldname]
+          elsif !object.new_record? and model.respond_to?(:edit_tips) and model.edit_tips[fieldname]
+            model.edit_tips[fieldname]
+          end
+          
+          hint = if hint
+            hint
+          elsif object.new_record? and model.respond_to?(:new_hints) and model.new_hints[fieldname]
+            model.new_hints[fieldname]
+          elsif !object.new_record? and model.respond_to?(:edit_hints) and model.edit_hints[fieldname]
+            model.edit_hints[fieldname]
+          end          
                                                           
           block = %Q{
             <div class="form-group #{'has-error' if !error_message_on(fieldname).blank?}">

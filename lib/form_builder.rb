@@ -4,7 +4,7 @@ module Padrino
       class ActivateFormBuilder < AbstractFormBuilder
                         
         # Text
-                
+                              
         def text_block(fieldname, placeholder: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => 'form-control', :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
@@ -151,7 +151,7 @@ module Padrino
         # Lookups and collections
                                     
         def lookup_block(fieldname, selected: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          assoc = model.reflect_on_all_associations(:belongs_to).find { |assoc| assoc.key == fieldname.to_s }
+          assoc = model.reflect_on_all_associations(:belongs_to).find { |assoc| assoc.foreign_key == fieldname.to_s }
           content = select(fieldname, :class => 'form-control', :options => ['']+assoc.class_name.constantize.all.map { |x| [x.send(assoc.class_name.constantize.send(:lookup)), x.id] }, :selected => (selected || object.send(fieldname)), :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end        

@@ -11,7 +11,7 @@ module Padrino
         end
         
         def number_block(fieldname, placeholder: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = number_field(fieldname, :class => 'form-control', :disabled => disabled, :placeholder => placeholder)
+          content = number_field(fieldname, :class => 'form-control', :step => 'any', :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end        
                     
@@ -42,12 +42,12 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end
                         
-        def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = select(fieldname, :class => 'form-control', :options => options, :disabled => disabled)
+        def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          content = select(fieldname, :class => 'form-control', :options => options, :selected => selected, :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end       
         
-        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
           options.each { |k,v|
@@ -55,7 +55,7 @@ module Padrino
               <div class="radio">
                 <label>
             }
-            content << radio_button(fieldname, :value => v, :checked => (v == object.send(fieldname)), :disabled => disabled)
+            content << radio_button(fieldname, :value => v, :checked => (v == checked), :disabled => disabled)
             content << %Q{
                 #{k}
               </label>
@@ -65,7 +65,7 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end
         
-        def check_boxes_block(fieldname, checked: [], options: model.send(fieldname.to_s.pluralize), disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def check_boxes_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: [], disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
           options.each { |k,v|
@@ -147,26 +147,7 @@ module Padrino
           content = @template.datetime_select_tags("#{model.to_s.underscore}[#{fieldname}]", :class => 'form-control', :value => object.send(fieldname), :disabled => disabled, :fives => fives)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end        
-        
-        # Lookups and collections
-                                    
-        def lookup_block(fieldname, lookup_method: nil, selected: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          assoc = model.reflect_on_all_associations(:belongs_to).find { |assoc| assoc.foreign_key == fieldname.to_s }
-          content = select(fieldname, :class => 'form-control', :options => ['']+assoc.class_name.constantize.all.map { |x| [x.send(lookup_method), x.id] }, :selected => (selected || object.send(fieldname)), :disabled => disabled)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
-        end         
-        
-        def collection_block(fieldname, lookup_method: nil, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          assoc = model.reflect_on_all_associations(:has_many).find { |assoc| assoc.name == fieldname.to_sym }
-          content = %Q{<ul class="list-unstyled">}
-          object.send(fieldname).each { |x|
-            content << %Q{<li><a class="popup" href="#{@template.url(:edit, :popup => true, :model => assoc.class_name, :id => x.id)}">#{x.send(lookup_method)}</a></li>}
-          }
-          content << %Q{<li><a class="btn btn-default popup" href="#{@template.url(:new, :popup => true, :model => assoc.class_name, :"#{assoc.inverse_of.class_name.underscore}_id" => object.id)}"><i class="fa fa-pencil"></i> New #{fieldname.to_s.singularize.humanize.downcase}</a></li>}
-          content << %Q{</ul>} 
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)                         
-        end        
-                                        
+                                                
         # Geopicker
         
         def geopicker_block(fieldname, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)

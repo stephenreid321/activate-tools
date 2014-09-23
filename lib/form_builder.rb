@@ -13,6 +13,16 @@ module Padrino
         def number_block(fieldname, placeholder: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = number_field(fieldname, :class => 'form-control', :step => 'any', :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
+        end     
+        
+        def email_block(fieldname, placeholder: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          content = email_field(fieldname, :class => 'form-control', :disabled => disabled, :placeholder => placeholder)
+          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
+        end 
+
+        def url_block(fieldname, placeholder: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          content = url_field(fieldname, :class => 'form-control', :disabled => disabled, :placeholder => placeholder)
+          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end        
                     
         def password_block(fieldname, placeholder: nil, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)

@@ -196,7 +196,7 @@ module Padrino
           end          
                                                           
           block = %Q{
-            <div class="form-group #{'has-error' if !error_message_on(fieldname).blank?}">
+            <div class="form-group #{'has-error' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
               <label for="#{model.to_s.underscore}_#{fieldname}" class="control-label #{label_class || 'col-md-3'}">
                 #{model.human_attribute_name(fieldname)}
           }          
@@ -220,9 +220,9 @@ module Padrino
                 <p class="hint help-block">#{hint}</p>
             }
           end
-          if !error_message_on(fieldname).blank?
+          if !error_message_on(fieldname.to_s.gsub('_id','')).blank?
             block << %Q{
-                <p class="help-block">#{error_message_on fieldname, :prepend => model.human_attribute_name(fieldname)}</p>
+                <p class="help-block">#{error_message_on fieldname.to_s.gsub('_id',''), :prepend => model.human_attribute_name(fieldname)}</p>
             }
           end
           block << %Q{

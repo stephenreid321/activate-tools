@@ -4,18 +4,18 @@ module Activate
     def ul_nav(css_class, items, prefix: '')
       s = ''
       s << %Q{<ul class="#{css_class}">}      
-      items.each { |name, path, icon|
-        icon = %Q{<i class="#{icon}"></i>} if icon
+      items.each { |name, path|
         if path.is_a? Array
           s << %Q{<li class="dropdown">}
-          s << %Q{<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">#{icon} #{name} <b class="caret"></b></a>}
-          s << ul_nav('dropdown-menu', path)
+          s << %Q{<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">#{name} <b class="caret"></b></a>}
+          s << ul_nav('dropdown-menu', path, prefix: prefix)
           s << %Q{</li>}
         else
+          path = "#{prefix}#{path}" if prefix
           s << %Q{<li}
           s << %Q{ class="active" } if request.path == path
           s << %Q{>}
-          s << %Q{<a href="#{path}">#{icon} #{name}</a>}
+          s << %Q{<a href="#{path}">#{name}</a>}
           s << %Q{</li>}
         end
       }

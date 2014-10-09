@@ -55,7 +55,42 @@ module Padrino
         def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = select(fieldname, :class => 'form-control', :options => options, :selected => selected, :required => required, :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
-        end       
+        end  
+        
+        def lookup_block(fieldname, url: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          content = hidden_field(fieldname, :required => required, :disabled => disabled)
+          content << %Q{
+            <script>
+              $(function () {
+                $("##{model.to_s.underscore}_#{fieldname}").select2({
+                  placeholder: "Search for a #{fieldname.to_s.singularize.humanize.downcase}",
+                  minimumInputLength: 1,
+                  ajax: {
+                    url: "#{url}",
+                    dataType: 'json',
+                    data: function (term) {
+                      return {
+                        q: term
+                      };
+                    },
+                    results: function (data) {
+                      return {results: data.results};
+                    }
+                  },
+                  initSelection: function (element, callback) {
+                    var id = $(element).val();
+                    if (id !== "") {
+                      $.get("#{url}", {id: id}, function (data) {
+                        callback(data);
+                      });
+                    }
+                  },
+                });
+              });
+            </script>
+          }
+          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
+        end  
         
         def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = ''          

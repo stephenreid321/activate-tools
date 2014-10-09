@@ -57,16 +57,17 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end  
         
-        def lookup_block(fieldname, url: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def lookup_block(fieldname, lookup_url: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = hidden_field(fieldname, :required => required, :disabled => disabled)
-          content << %Q{
+          content << " #{selected_link}"
+          content << "
             <script>
               $(function () {
-                $("##{model.to_s.underscore}_#{fieldname}").select2({
-                  placeholder: "Search for a #{fieldname.to_s.singularize.humanize.downcase}",
+                $('##{model.to_s.underscore}_#{fieldname}').select2({
+                  placeholder: 'Search for a #{fieldname.to_s.singularize.humanize.downcase}',
                   minimumInputLength: 1,
                   ajax: {
-                    url: "#{url}",
+                    url: '#{lookup_url}',
                     dataType: 'json',
                     data: function (term) {
                       return {
@@ -79,8 +80,8 @@ module Padrino
                   },
                   initSelection: function (element, callback) {
                     var id = $(element).val();
-                    if (id !== "") {
-                      $.get("#{url}", {id: id}, function (data) {
+                    if (id !== '') {
+                      $.get('#{lookup_url}', {id: id}, function (data) {
                         callback(data);
                       });
                     }
@@ -88,7 +89,7 @@ module Padrino
                 });
               });
             </script>
-          }
+          "
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end  
         

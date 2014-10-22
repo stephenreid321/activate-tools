@@ -66,6 +66,7 @@ module Padrino
                 $('##{model.to_s.underscore}_#{fieldname}').select2({
                   placeholder: 'Search for a #{fieldname.to_s.singularize.humanize.downcase}',
                   minimumInputLength: 1,
+                  width: '100%',
                   ajax: {
                     url: '#{lookup_url}',
                     dataType: 'json',

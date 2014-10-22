@@ -65,6 +65,7 @@ module Padrino
               $(function () {
                 $('##{model.to_s.underscore}_#{fieldname}').select2({
                   placeholder: 'Search for a #{fieldname.to_s.singularize.humanize.downcase}',
+                  allowClear: true,
                   minimumInputLength: 1,
                   width: '100%',
                   ajax: {

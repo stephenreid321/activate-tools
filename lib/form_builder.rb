@@ -58,7 +58,7 @@ module Padrino
         end  
         
         def lookup_block(fieldname, lookup_url: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = hidden_field(fieldname, :required => required, :disabled => disabled, :value => object.send(fieldname))
+          content = hidden_field(fieldname, :required => required, :disabled => disabled)
           content << " #{selected_link}"
           content << "
             <script>

@@ -96,6 +96,7 @@ module Padrino
         end  
         
         def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          r = nil
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
           options.each { |k,v|

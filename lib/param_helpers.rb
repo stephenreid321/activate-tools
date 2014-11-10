@@ -11,7 +11,7 @@ module Activate
   
     def datetime_hashes_to_datetimes!(hash)
       hash.each { |k,v|
-        if v.is_a?(Hash) and [:year, :month, :day, :hour, :min].all? { |x| v.has_key?(x) }
+        if v.is_a?(Hash) and [:year, :month, :day, :hour, :min].all? { |x| v.has_key?(x.to_s) }
           hash[k] = Time.zone.local(v[:year].to_i, v[:month].to_i, v[:day].to_i, v[:hour].to_i, v[:min].to_i)
         elsif v.is_a?(Hash)
           datetime_hashes_to_datetimes!(v)
@@ -21,7 +21,7 @@ module Activate
     
     def date_hashes_to_dates!(hash)
       hash.each { |k,v|
-        if v.is_a?(Hash) and [:year, :month, :day].all? { |x| v.has_key?(x) }
+        if v.is_a?(Hash) and [:year, :month, :day].all? { |x| v.has_key?(x.to_s) }
           hash[k] = Date.new(v[:year].to_i, v[:month].to_i, v[:day].to_i)
         elsif v.is_a?(Hash)
           date_hashes_to_dates!(v)
@@ -43,7 +43,7 @@ module Activate
     
     def coordinate_hashes_to_coordinates!(hash)
       hash.each { |k,v|
-        if v.is_a?(Hash) and [:lat, :lng].all? { |x| v.has_key?(x) }
+        if v.is_a?(Hash) and [:lat, :lng].all? { |x| v.has_key?(x.to_s) }
           hash[k] = [v[:lng].to_f, v[:lat].to_f]
         elsif v.is_a?(Hash)
           coordinate_hashes_to_coordinates!(v)

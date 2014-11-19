@@ -288,7 +288,7 @@ module Padrino
         end        
         
         def model_required(fieldname)
-          model._validators[fieldname] && model._validators[fieldname].any? { |validator| validator.class.to_s.include?('PresenceValidator') }
+          model._validators[fieldname] && model._validators[fieldname].any? { |validator| validator.class.to_s.include?('PresenceValidator') && validator.options.empty? }
         end
                 
       end

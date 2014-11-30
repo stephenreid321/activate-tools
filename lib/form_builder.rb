@@ -129,7 +129,7 @@ module Padrino
             </div>
             }
           }
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
         end        
         
         # Files and images

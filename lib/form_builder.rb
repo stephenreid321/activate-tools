@@ -210,11 +210,12 @@ module Padrino
                 
         # Submission
         
-        def submit_block(destroy_url: nil, div_class: nil)
+        def submit_block(button_text: nil, destroy_url: nil, div_class: nil)
+          button_text = object.new_record? ? "Create #{model.to_s.underscore.humanize.downcase}" : "Update #{model.to_s.underscore.humanize.downcase}" if !button_text
           content = %Q{
             <div class="form-group">
               <div class="#{div_class || 'col-md-offset-3 col-md-6'}">
-                <button class="btn btn-primary" type="submit">#{object.new_record? ? "Create #{model.to_s.underscore.humanize.downcase}" : "Update #{model.to_s.underscore.humanize.downcase}"}</button> }
+                <button class="btn btn-primary" type="submit">#{button_text}</button> }
           if !object.new_record? and destroy_url
             content << %Q{<a class="btn btn-danger" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}">Delete</a>}
           end

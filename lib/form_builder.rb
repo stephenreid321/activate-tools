@@ -57,41 +57,10 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end  
         
-        def lookup_block(fieldname, lookup_url: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = hidden_field(fieldname, :required => (r = required || model_required(fieldname)), :disabled => disabled)
+        def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          placeholder = "Search #{fieldname.to_s.humanize.downcase.pluralize}" unless placeholder
+          content = hidden_field(fieldname, :class => 'lookup', :'data-lookup-url' => lookup_url, :placeholder => placeholder, :required => (r = required || model_required(fieldname)), :disabled => disabled)
           content << " #{selected_link}"
-          content << "
-            <script>
-              $(function () {
-                $('##{model.to_s.underscore}_#{fieldname}').select2({
-                  placeholder: 'Search for a #{fieldname.to_s.singularize.humanize.downcase}',
-                  allowClear: true,
-                  minimumInputLength: 1,
-                  width: '100%',
-                  ajax: {
-                    url: '#{lookup_url}',
-                    dataType: 'json',
-                    data: function (term) {
-                      return {
-                        q: term
-                      };
-                    },
-                    results: function (data) {
-                      return {results: data.results};
-                    }
-                  },
-                  initSelection: function (element, callback) {
-                    var id = $(element).val();
-                    if (id !== '') {
-                      $.get('#{lookup_url}', {id: id}, function (data) {
-                        callback(data);
-                      });
-                    }
-                  },
-                });
-              });
-            </script>
-          "
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end  
         

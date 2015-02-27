@@ -58,7 +58,6 @@ module Padrino
         end  
         
         def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          placeholder = "Search #{fieldname.to_s.humanize.downcase.pluralize}" unless placeholder
           content = hidden_field(fieldname, :class => 'lookup', :'data-lookup-url' => lookup_url, :placeholder => placeholder, :required => (r = required || model_required(fieldname)), :disabled => disabled)
           content << " #{selected_link}"
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)

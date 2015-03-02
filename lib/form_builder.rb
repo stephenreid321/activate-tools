@@ -169,9 +169,9 @@ module Padrino
         
         def geopicker_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
           content = %Q{<div class="geopicker">}
-          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lat]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => object.send("#{fieldname}_lat"))
+          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lat]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[1] if object.send(fieldname)))
           content << ' '
-          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lng]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => object.send("#{fieldname}_lng"))
+          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lng]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[0] if object.send(fieldname)))
           content << %Q{</div>}                   
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end      

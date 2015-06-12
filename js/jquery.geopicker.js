@@ -70,7 +70,7 @@
               var latLng = results[0].geometry.location;
               placeMarker(latLng);
               resetBounds();
-              map.setZoom(settings.defaultZoom);
+              map.setZoom(17);
               set();
             } else {
               alert(settings.guessFailedMessage);

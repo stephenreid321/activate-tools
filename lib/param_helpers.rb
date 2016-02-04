@@ -43,7 +43,7 @@ module Activate
     
     def coordinate_hashes_to_coordinates!(hash)
       hash.each { |k,v|
-        if v.is_a?(Hash) and [:lat, :lng].all? { |x| v.has_key?(x.to_s) }
+        if v.is_a?(Hash) and [:lat, :lng].all? { |x| v.has_key?(x.to_s) } and [v[:lng].to_f, v[:lat].to_f] != [0,0]
           hash[k] = [v[:lng].to_f, v[:lat].to_f]
         elsif v.is_a?(Hash)
           coordinate_hashes_to_coordinates!(v)

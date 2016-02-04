@@ -44,7 +44,7 @@ module Activate
     def coordinate_hashes_to_coordinates!(hash)
       hash.each { |k,v|
         if v.is_a?(Hash) and [:lat, :lng].all? { |x| v.has_key?(x.to_s) }
-          if [v[:lng].to_f, v[:lat].to_f] == [0,0]
+          if [v[:lng].to_f, v[:lat].to_f] == [0.0,0.0]
             hash[k] = nil
           else
             hash[k] = [v[:lng].to_f, v[:lat].to_f]

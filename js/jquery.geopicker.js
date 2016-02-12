@@ -30,12 +30,13 @@
           
       var container = this;    
       var mapCanvas = $('<div></div>').prependTo(container).width(settings.width).height(settings.height)[0];      
-      var map = new google.maps.Map(mapCanvas, settings.mapOptions);          
-      $(mapCanvas).data('map', map);
+      var map = new google.maps.Map(mapCanvas, settings.mapOptions);                
       var marker = new google.maps.Marker({
         draggable: true,
         icon: settings.icon       
       });         
+      $(mapCanvas).data('map', map);
+      $(mapCanvas).data('marker', marker);
       
       google.maps.event.addListener(map, 'click', function(event) {
         placeMarker(event.latLng);

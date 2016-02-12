@@ -31,7 +31,7 @@
       var container = this;    
       var mapCanvas = $('<div></div>').prependTo(container).width(settings.width).height(settings.height)[0];      
       var map = new google.maps.Map(mapCanvas, settings.mapOptions);          
-      mapCanvas.data('map', map);
+      $(mapCanvas).data('map', map);
       var marker = new google.maps.Marker({
         draggable: true,
         icon: settings.icon       

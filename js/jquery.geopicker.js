@@ -15,9 +15,6 @@
       set: function() {},
       clear: null,
       clearElement: null,
-      address: null,
-      guessElement: null,
-      guessFailedMessage: "Sorry, we couldn't guess from that address.",
       defaultZoom: 5,
       defaultCenter: new google.maps.LatLng(53,-1),
       icon: null
@@ -60,27 +57,7 @@
           settings.clear(container);
         });      
       }
-      
-      if(settings.address) {
-        $(settings.guessElement).click(function(e) {
-          e.preventDefault();  
-          geocoder = new google.maps.Geocoder();
-          geocoder.geocode( {
-            'address': settings.address(container)
-          }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              var latLng = results[0].geometry.location;
-              placeMarker(latLng);
-              resetBounds();
-              map.setZoom(17);
-              set();
-            } else {
-              alert(settings.guessFailedMessage);
-            }
-          });    
-        });    
-      }
-      
+            
       // initialize
       var latLng = settings.getLatLng(container);
       if(latLng) {
@@ -111,7 +88,7 @@
       function resetBounds() {
         var bounds = new google.maps.LatLngBounds();
         bounds.extend(marker.getPosition());   
-        map.fitBounds(bounds);           
+        map.fitBounds(bounds);
       }      
       function placeMarker(latLng) {
         marker.setMap(map);

@@ -183,7 +183,7 @@ module Padrino
           button_text = object.new_record? ? "Create #{model.to_s.underscore.humanize.downcase}" : "Update #{model.to_s.underscore.humanize.downcase}" if !button_text
           content = %Q{
             <div class="form-group">
-              <div class="#{div_class || 'col-md-offset-3 col-md-6'}">
+              <div class="#{div_class || 'col-sm-offset-3 col-sm-6'}">
                 <button class="btn btn-primary" type="submit">#{button_text}</button> }
           if !object.new_record? and destroy_url
             content << %Q{<a class="btn btn-danger" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}">Delete</a>}
@@ -216,7 +216,7 @@ module Padrino
                                                           
           block = %Q{
             <div class="form-group #{'has-error' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
-              <label for="#{model.to_s.underscore}_#{fieldname}" class="control-label #{label_class || 'col-md-3'}">
+              <label for="#{model.to_s.underscore}_#{fieldname}" class="control-label #{label_class || 'col-sm-3'}">
                 #{model.human_attribute_name(fieldname)}#{'*' if required}
           }          
           if tip
@@ -231,7 +231,7 @@ module Padrino
           end
           block << %Q{
               </label>
-              <div class="#{div_class || 'col-md-6'}">
+              <div class="#{div_class || 'col-sm-6'}">
                 #{content}
           }
           if hint

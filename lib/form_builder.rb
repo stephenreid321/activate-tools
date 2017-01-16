@@ -155,8 +155,8 @@ module Padrino
         
         # Dates and times
                 
-        def date_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = @template.date_select_tags("#{model.to_s.underscore}[#{fieldname}]", :class => 'form-control', :value => object.send(fieldname), :required => (r = required || model_required(fieldname)), :disabled => disabled)
+        def date_block(fieldname, start_year: false, end_year: false, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          content = @template.date_select_tags("#{model.to_s.underscore}[#{fieldname}]", :class => 'form-control', :value => object.send(fieldname), :required => (r = required || model_required(fieldname)), :disabled => disabled, :start_year => start_year, :end_year => end_year)
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end
         

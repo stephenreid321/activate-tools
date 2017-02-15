@@ -12,7 +12,7 @@ module Activate
     def datetime_hashes_to_datetimes!(hash)
       hash.each { |k,v|
         if v.is_a?(Hash) and [:year, :month, :day, :hour, :min].all? { |x| v.has_key?(x.to_s) }
-          hash[k] = begin; Time.zone.local(v[:year].to_i, v[:month].to_i, v[:day].to_i, v[:hour].to_i, v[:min].to_i); rescue; nil; end
+          hash[k] = begin; Time.zone.parse("#{v[:day]} #{v[:month]} #{v[:year]} #{v[:hour]}:#{v[:min]}"); rescue; nil; end
         elsif v.is_a?(Hash)
           datetime_hashes_to_datetimes!(v)
         end
@@ -22,7 +22,7 @@ module Activate
     def date_hashes_to_dates!(hash)
       hash.each { |k,v|
         if v.is_a?(Hash) and [:year, :month, :day].all? { |x| v.has_key?(x.to_s) }
-          hash[k] = begin; Date.new(v[:year].to_i, v[:month].to_i, v[:day].to_i); rescue; nil; end
+          hash[k] = begin; Date.parse("#{v[:day]} #{v[:month]} #{v[:year]}"); rescue; nil; end
         elsif v.is_a?(Hash)
           date_hashes_to_dates!(v)
         end

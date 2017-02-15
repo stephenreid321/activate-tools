@@ -8,9 +8,9 @@ module Activate
       # options[:class]
       s = []
       s << '<span class="date">'
-      s << text_field_tag(:"#{name}[day]", :class => options[:class], :value => (value.day if value), :disabled => disabled, :required => required)
-      s << select_tag(:"#{name}[month]", :options => [nil] + Date::MONTHNAMES[1..-1].each_with_index.map { |x,i| ["#{x}","#{i+1}"] }, :class => options[:class], :selected => (value.month if value), :disabled => disabled, :required => required)
-      s << text_field_tag(:"#{name}[year]", :class => options[:class], :value => (value.year if value), :disabled => disabled, :required => required)
+      s << text_field_tag(:"#{name}[day]", :placeholder => 'Day', :class => options[:class], :value => (value.day if value), :disabled => disabled, :required => required)
+      s << text_field_tag(:"#{name}[month]", :placeholder => 'Month', :class => options[:class], :selected => (value.month if value), :disabled => disabled, :required => required)
+      s << text_field_tag(:"#{name}[year]", :placeholder => 'Year', :class => options[:class], :value => (value.year if value), :disabled => disabled, :required => required)
       s << '</span>'
       s.join(' ')        
     end

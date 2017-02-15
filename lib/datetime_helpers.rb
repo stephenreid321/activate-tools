@@ -9,7 +9,7 @@ module Activate
       s = []
       s << '<span class="date">'
       s << text_field_tag(:"#{name}[day]", :placeholder => 'Day', :class => options[:class], :value => (value.day if value), :disabled => disabled, :required => required)
-      s << text_field_tag(:"#{name}[month]", :placeholder => 'Month', :class => options[:class], :selected => (value.month if value), :disabled => disabled, :required => required)
+      s << text_field_tag(:"#{name}[month]", :placeholder => 'Month', :class => options[:class], :value => (Date::MONTHNAMES[value.month] if value), :disabled => disabled, :required => required)
       s << text_field_tag(:"#{name}[year]", :placeholder => 'Year', :class => options[:class], :value => (value.year if value), :disabled => disabled, :required => required)
       s << '</span>'
       s.join(' ')        

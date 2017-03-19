@@ -45,6 +45,11 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end    
         
+        def colorpicker_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+          content = text_field(fieldname, :class => 'form-control colorpicker', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)           
+        end
+        
         # Selects and checkboxes
 
         def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)

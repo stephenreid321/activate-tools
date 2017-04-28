@@ -5,70 +5,70 @@ module Padrino
                         
         # Text
                               
-        def text_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def text_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
         
-        def number_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def number_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = number_field(fieldname, :class => 'form-control', :step => 'any', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end     
         
-        def email_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def email_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = email_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end 
 
-        def url_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def url_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = url_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
                     
-        def password_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def password_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = password_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
         
-        def slug_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def slug_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => 'form-control slug', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
         
-        def text_area_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def text_area_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = text_area(fieldname, :class => 'form-control', :rows => rows, :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
                 
-        def wysiwyg_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def wysiwyg_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = text_area(fieldname, :class => 'form-control wysiwyg', :rows => rows, :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end    
         
-        def color_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def color_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => 'form-control colorpicker', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)           
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)           
         end
         
         # Selects and checkboxes
 
-        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = check_box(fieldname, :required => (r = required || model_required(fieldname)), :disabled => disabled)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
                         
-        def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = select(fieldname, :class => 'form-control', :options => options, :selected => selected, :required => (r = required || model_required(fieldname)), :disabled => disabled)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end  
         
-        def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = hidden_field(fieldname, :class => 'lookup', :'data-lookup-url' => lookup_url, :placeholder => placeholder, :required => (r = required || model_required(fieldname)), :disabled => disabled)
           content << " #{selected_link}"
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end  
         
-        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           r = nil
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
@@ -84,10 +84,10 @@ module Padrino
             </div>
             }
           }
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
         
-        def check_boxes_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: [], disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def check_boxes_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: [], disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
           options.each { |k,v|
@@ -102,12 +102,12 @@ module Padrino
             </div>
             }
           }
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class)
         end        
         
         # Files and images
         
-        def file_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def file_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = ''
           if !object.persisted? or !object.send(fieldname)
             content << file_field(fieldname)
@@ -124,10 +124,10 @@ module Padrino
               </div>
             }
           end          
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
         
-        def image_block(fieldname, rotate: true, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def image_block(fieldname, rotate: true, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = ''
           if !object.persisted? or !object.send(fieldname)
             content << file_field(fieldname)
@@ -155,31 +155,31 @@ module Padrino
               </div>
             }       
           end    
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end         
         
         # Dates and times
                 
-        def date_block(fieldname, start_year: false, end_year: false, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def date_block(fieldname, start_year: false, end_year: false, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = @template.date_select_tags("#{model.to_s.underscore}[#{fieldname}]", :class => 'form-control', :value => object.send(fieldname), :required => (r = required || model_required(fieldname)), :disabled => disabled, :start_year => start_year, :end_year => end_year)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
         
-        def datetime_block(fieldname, fives: false, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def datetime_block(fieldname, fives: false, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = @template.datetime_select_tags("#{model.to_s.underscore}[#{fieldname}]", :class => 'form-control', :value => object.send(fieldname), :required => (r = required || model_required(fieldname)), :disabled => disabled, :fives => fives)
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
                                                 
         # Geopicker
         
-        def geopicker_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def geopicker_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil)
           content = ''
           content << %Q{<div class="geopicker">}
           content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lat]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[1] if object.send(fieldname)))
           content << ' '
           content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lng]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[0] if object.send(fieldname)))
           content << %Q{</div>}                   
-          block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end      
                 
         # Submission
@@ -201,7 +201,7 @@ module Padrino
         
         # Block layout
         
-        def block_layout(fieldname, content, tip: nil, hint: nil, label_class: nil, div_class: nil, required: nil)
+        def block_layout(fieldname, content, tip: nil, hint: nil, container_class: nil, label_class: nil, div_class: nil, required: nil)
                    
           tip = if tip
             tip
@@ -220,7 +220,7 @@ module Padrino
           end          
                                                           
           block = %Q{
-            <div class="form-group #{'has-error' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
+            <div class="form-group #{container_class} #{'has-error' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
               <label for="#{model.to_s.underscore}_#{fieldname}" class="control-label #{label_class || 'col-sm-3'}">
                 #{model.human_attribute_name(fieldname)}#{'*' if required}
           }          

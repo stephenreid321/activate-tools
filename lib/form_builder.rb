@@ -184,10 +184,10 @@ module Padrino
                 
         # Submission
         
-        def submit_block(button_text: nil, destroy_url: nil, div_class: nil)
+        def submit_block(button_text: nil, destroy_url: nil, container_class: nil, div_class: nil)
           button_text = object.new_record? ? "Create #{model.to_s.underscore.humanize.downcase}" : "Update #{model.to_s.underscore.humanize.downcase}" if !button_text
           content = %Q{
-            <div class="form-group">
+            <div class="form-group #{container_class}">
               <div class="#{div_class || 'col-sm-offset-3 col-sm-6'}">
                 <button class="btn btn-primary" type="submit">#{button_text}</button> }
           if !object.new_record? and destroy_url

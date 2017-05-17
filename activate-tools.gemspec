@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Tools accompanying the activate gems}
   gem.version       = '0.0.1'
   gem.authors       = ["Stephen Reid"]
-  gem.email         = ["stephen.reid.inbox@gmail.com"]    
+  gem.email         = ["stephen@stephenreid.net"]    
   gem.require_paths = ["lib"]
   
   gem.add_dependency 'padrino'

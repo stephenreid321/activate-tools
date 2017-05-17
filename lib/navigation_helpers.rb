@@ -10,6 +10,8 @@ module Activate
           s << %Q{<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">#{name} <b class="caret"></b></a>}
           s << ul_nav('dropdown-menu', path, prefix: prefix)
           s << %Q{</li>}
+        elsif path.nil?
+          s << %Q{<li role="separator" class="divider"></li>}                          
         else
           path = "#{prefix}#{path}" if prefix
           s << %Q{<li}

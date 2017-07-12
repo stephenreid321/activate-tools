@@ -2,6 +2,14 @@
 /*global pusher*/
 
 $(function () {
+  
+  $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    var t = '_t=' + Date.now()
+    if (options.data)
+      options.data += '&' + t
+    else
+      options.data = t
+  });  
 
   $(document).on('submit', '[data-pagelet-url] form:not(.no-trigger)', function (event) {
     var form = this

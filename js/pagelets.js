@@ -72,7 +72,7 @@ $(function () {
   $('[data-pagelet-url]').each(function () {
     var pagelet = this;
     if ($(pagelet).html().length == 0) {
-      $(pagelet).html('<i class="fa fa-spin fa-spinner"></i>')
+      $(pagelet).html('<i class="fa fa-spin fa-circle-o-notch"></i>')
       $(pagelet).load($(pagelet).attr('data-pagelet-url'))
     }
   })

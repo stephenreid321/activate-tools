@@ -2,14 +2,14 @@
 /*global pusher*/
 
 $(function () {
-  
+
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     var t = '_t=' + Date.now()
     if (options.data)
       options.data += '&' + t
     else
       options.data = t
-  });  
+  });
 
   $(document).on('submit', '[data-pagelet-url] form:not(.no-trigger)', function (event) {
     var form = this
@@ -64,18 +64,21 @@ $(function () {
     });
   }
 
+  function loadEmptyPagelets() {
+    $('[data-pagelet-url]').each(function () {
+      var pagelet = this;
+      if ($(pagelet).html().length == 0) {
+        $(pagelet).html('<i class="fa fa-spin fa-circle-o-notch"></i>')
+        $(pagelet).load($(pagelet).attr('data-pagelet-url'))
+      }
+    })
+  }
+
   $(document).ajaxComplete(function () {
     pageletPusher()
+    loadEmptyPagelets()
   })
   pageletPusher()
-
-  $('[data-pagelet-url]').each(function () {
-    var pagelet = this;
-    if ($(pagelet).html().length == 0) {
-      $(pagelet).html('<i class="fa fa-spin fa-circle-o-notch"></i>')
-      $(pagelet).load($(pagelet).attr('data-pagelet-url'))
-    }
-  })
-
+  loadEmptyPagelets()
 
 });

@@ -6,8 +6,8 @@ module Activate
       s << %Q{<ul class="#{css_class}">}      
       items.each { |name, path|
         if path.is_a? Array
-          s << %Q{<li class="dropdown">}
-          s << %Q{<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">#{name} <b class="caret"></b></a>}
+          s << %Q{<li class="#{li_class} dropdown">}
+          s << %Q{<a data-toggle="dropdown" class="#{a_class} dropdown-toggle" href="javascript:;">#{name} <b class="caret"></b></a>}
           s << ul_nav('dropdown-menu', path, prefix: prefix)
           s << %Q{</li>}
         elsif path.nil?

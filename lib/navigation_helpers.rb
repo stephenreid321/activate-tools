@@ -1,7 +1,7 @@
 module Activate
   module NavigationHelpers
       
-    def ul_nav(css_class, items, prefix: '')
+    def ul_nav(css_class, items, prefix: '', li_class: '', a_class: '')
       s = ''
       s << %Q{<ul class="#{css_class}">}      
       items.each { |name, path|
@@ -15,9 +15,9 @@ module Activate
         else
           path = "#{prefix}#{path}" if prefix
           s << %Q{<li}
-          s << %Q{ class="active" } if request.path == path
+          s << %Q{ class="active #{li_class}" } if request.path == path
           s << %Q{>}
-          s << %Q{<a href="#{path}">#{name}</a>}
+          s << %Q{<a class="#{a_class}" href="#{path}">#{name}</a>}
           s << %Q{</li>}
         end
       }

@@ -188,7 +188,7 @@ module Padrino
           button_text = object.new_record? ? "Create #{model.to_s.underscore.humanize.downcase}" : "Update #{model.to_s.underscore.humanize.downcase}" if !button_text
           content = %Q{
             <div class="form-group #{container_class}">
-              <div class="#{div_class || 'col-sm-offset-3 col-sm-6'}">
+              <div class="#{div_class}">
                 <button class="btn btn-primary" type="submit">#{button_text}</button> }
           if !object.new_record? and destroy_url
             content << %Q{<a class="btn btn-danger" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}">Delete</a>}
@@ -220,8 +220,8 @@ module Padrino
           end          
                                                           
           block = %Q{
-            <div class="form-group #{container_class} #{'has-error' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
-              <label for="#{model.to_s.underscore}_#{fieldname}" class="control-label #{label_class || 'col-sm-3'}">
+            <div class="form-group #{container_class} #{'has-danger' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
+              <label for="#{model.to_s.underscore}_#{fieldname}" class="#{label_class}">
                 #{model.human_attribute_name(fieldname)}#{'*' if required}
           }          
           if tip
@@ -236,17 +236,17 @@ module Padrino
           end
           block << %Q{
               </label>
-              <div class="#{div_class || 'col-sm-6'}">
+              <div class="#{div_class}">
                 #{content}
           }
           if hint
             block << %Q{
-                <p class="hint help-block">#{hint}</p>
+                <small class="form-text text-muted">#{hint}</small>
             }
           end
           if !error_message_on(fieldname.to_s.gsub('_id','')).blank?
             block << %Q{
-                <p class="help-block">#{error_message_on fieldname.to_s.gsub('_id',''), :prepend => model.human_attribute_name(fieldname)}</p>
+                <div class="invalid-feedback">#{error_message_on fieldname.to_s.gsub('_id',''), :prepend => model.human_attribute_name(fieldname)}</div>
             }
           end
           block << %Q{

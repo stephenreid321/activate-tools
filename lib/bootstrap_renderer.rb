@@ -7,14 +7,14 @@ module WillPaginate
 
       def page_number(page)
         unless page == current_page
-          tag(:li, link(page, page, :rel => rel_value(page)))
+          tag(:li, link(page, page, :class => "page-link", :rel => rel_value(page)), :class => 'page-item')
         else
-          tag(:li, link(page, '#'), :class => 'active')
+          tag(:li, link(page, '#', :class => "page-link"), :class => 'page-item active')
         end
       end
       
       def gap
-        tag(:li, link('&hellip;', '#'), :class => 'disabled')
+        tag(:li, link('&hellip;', '#', :class => "page-link"), :class => 'page-item disabled')
       end        
 
       def next_page
@@ -29,9 +29,9 @@ module WillPaginate
 
       def previous_or_next_page(page, text, classname)
         if page
-          tag(:li, link(text, page), :class => classname)
+          tag(:li, link(text, page, :class => "page-link"), :class => "page-item #{classname}")
         else
-          tag(:li, link(text, '#'), :class => classname + ' disabled')
+          tag(:li, link(text, '#', :class => "page-link"), :class => "page-item disabled #{classname}")
         end
       end
 

@@ -1,7 +1,7 @@
 module Activate
   module NavigationHelpers
-      
-    def ul_nav(items, prefix: '', ul_class: '', li_class: '', a_class: '')
+
+    def ul_nav(items, prefix: '', ul_class: 'navbar-nav', li_class: 'nav-item', a_class: 'nav-link')
       s = ''
       s << %Q{<ul class="#{ul_class}">}      
       items.each { |name, path|

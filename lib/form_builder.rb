@@ -6,59 +6,59 @@ module Padrino
         # Text
                               
         def text_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = text_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
         
         def number_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = number_field(fieldname, :class => 'form-control', :step => 'any', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = number_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :step => 'any', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end     
         
         def email_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = email_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = email_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end 
 
         def url_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = url_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = url_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
                     
         def password_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = password_field(fieldname, :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = password_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
         
         def slug_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = text_field(fieldname, :class => 'form-control slug', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} slug", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end        
         
         def text_area_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = text_area(fieldname, :class => 'form-control', :rows => rows, :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = text_area(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :rows => rows, :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
                 
         def wysiwyg_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = text_area(fieldname, :class => 'form-control wysiwyg', :rows => rows, :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = text_area(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} wysiwyg", :rows => rows, :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end    
         
         def color_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = text_field(fieldname, :class => 'form-control colorpicker', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} colorpicker", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)           
         end
         
         # Selects and checkboxes
 
         def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: 'form-check-label', div_class: nil)
-          content = check_box(fieldname, :required => (r = required || model_required(fieldname)), :disabled => disabled)
+          content = check_box(fieldname, :class => "form-check-input #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
                         
         def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = select(fieldname, :class => 'form-control', :options => options, :selected => selected, :required => (r = required || model_required(fieldname)), :disabled => disabled)
+          content = select(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :options => options, :selected => selected, :required => (r = required || model_required(fieldname)), :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end  
         
@@ -77,7 +77,7 @@ module Padrino
               <div class="radio">
                 <label>
             }
-            content << radio_button(fieldname, :value => v, :checked => (v == checked), :required => (r = required || model_required(fieldname)), :disabled => disabled)
+            content << radio_button(fieldname, :class => "form-check-input #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :value => v, :checked => (v == checked), :required => (r = required || model_required(fieldname)), :disabled => disabled)
             content << %Q{
                 #{k}
               </label>
@@ -144,7 +144,7 @@ module Padrino
               content << %Q{                  
                 <div class="input-group" style="width: 13em">              
                   <span style="display: table-cell">Rotate by</span>
-                  #{select(:"rotate_#{fieldname}_by", :options => ['','90','180','270'], :class => 'form-control', :disabled => disabled)}
+                  #{select(:"rotate_#{fieldname}_by", :options => ['','90','180','270'], :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :disabled => disabled)}
                   <span class="input-group-addon">&deg;</span>
                 </div>               
               }
@@ -161,12 +161,12 @@ module Padrino
         # Dates and times
                 
         def date_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = text_field(fieldname, :class => 'datepicker form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder, :value => (if v = object.send(fieldname); v.strftime('%Y-%m-%d'); end))
+          content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} datepicker", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder, :value => (if v = object.send(fieldname); v.strftime('%Y-%m-%d'); end))
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end
         
         def datetime_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
-          content = text_field(fieldname, :class => 'datetimepicker form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder, :value => (if v = object.send(fieldname); v.strftime('%Y-%m-%d %H:%M'); end))
+          content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} datetimepicker", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder, :value => (if v = object.send(fieldname); v.strftime('%Y-%m-%d %H:%M'); end))
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end           
                                                 
@@ -175,9 +175,9 @@ module Padrino
         def geopicker_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = ''
           content << %Q{<div class="geopicker">}
-          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lat]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[1] if object.send(fieldname)))
+          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lat]", :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[1] if object.send(fieldname)))
           content << ' '
-          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lng]", :class => 'form-control', :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[0] if object.send(fieldname)))
+          content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lng]", :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :value => (object.send(fieldname)[0] if object.send(fieldname)))
           content << %Q{</div>}                   
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end      
@@ -210,6 +210,14 @@ module Padrino
           elsif !object.new_record? and model.respond_to?(:edit_tips) and model.edit_tips[fieldname]
             model.edit_tips[fieldname]
           end
+          tip_html = tip ? "
+            <i id=\"tip-#{fieldname}\" class=\"fa fa-question-circle\" title=\"#{tip}\"></i>
+            <script>
+              $(function() {
+                $('#tip-#{fieldname}').tooltip({placement: 'right'});
+            });
+            </script>
+          " : nil      
           
           hint = if hint
             hint
@@ -217,43 +225,44 @@ module Padrino
             model.new_hints[fieldname]
           elsif !object.new_record? and model.respond_to?(:edit_hints) and model.edit_hints[fieldname]
             model.edit_hints[fieldname]
-          end          
-                                                          
-          block = %Q{
-            <div class="#{container_class} #{'has-danger' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}">
+          end   
+          hint_html = hint ? %Q{
+                <small class="form-text text-muted">#{hint}</small>
+          } : nil 
+          
+          error_html = !error_message_on(fieldname.to_s.gsub('_id','')).blank? ? 
+            %Q{
+                <div class="invalid-feedback">#{error_message_on fieldname.to_s.gsub('_id',''), :prepend => model.human_attribute_name(fieldname)}</div>
+          } : nil
+                  
+          if container_class and container_class.include?('form-check')
+            block = %Q{
+            <div class="#{container_class}">
+              <label for="#{model.to_s.underscore}_#{fieldname}" class="#{label_class}">
+                #{content}
+                #{model.human_attribute_name(fieldname)}#{'*' if required}
+                #{tip_html}
+                #{error_html}
+                #{hint_html}
+              </label>
+            </div>
+            }
+          else
+            block = %Q{
+            <div class="#{container_class}">
               <label for="#{model.to_s.underscore}_#{fieldname}" class="#{label_class}">
                 #{model.human_attribute_name(fieldname)}#{'*' if required}
-          }          
-          if tip
-            block << "
-            <i id=\"tip-#{fieldname}\" class=\"fa fa-question-circle\" title=\"#{tip}\"></i>
-            <script>
-              $(function() {
-                $('#tip-#{fieldname}').tooltip({placement: 'right'});
-            });
-            </script>
-            " 
-          end
-          block << %Q{
+                #{tip_html}
               </label>
               <div class="#{div_class}">
                 #{content}
-          }
-          if hint
-            block << %Q{
-                <small class="form-text text-muted">#{hint}</small>
-            }
-          end
-          if !error_message_on(fieldname.to_s.gsub('_id','')).blank?
-            block << %Q{
-                <div class="invalid-feedback">#{error_message_on fieldname.to_s.gsub('_id',''), :prepend => model.human_attribute_name(fieldname)}</div>
-            }
-          end
-          block << %Q{
+                #{error_html}
+                #{hint_html}
               </div>
             </div>
-          }
-          block
+            }
+          end
+          block          
         end          
         
         protected

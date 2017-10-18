@@ -52,7 +52,7 @@ module Padrino
         
         # Selects and checkboxes
 
-        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: nil, div_class: nil)
+        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: 'form-check-label', div_class: nil)
           content = check_box(fieldname, :required => (r = required || model_required(fieldname)), :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
@@ -68,7 +68,7 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end  
         
-        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: nil, div_class: nil)
+        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: 'form-check-label', div_class: nil)
           r = nil
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array

@@ -160,12 +160,12 @@ module Padrino
         
         # Dates and times
                 
-        def date_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def date_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} datepicker", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder, :value => (if v = object.send(fieldname); v.strftime('%Y-%m-%d'); end))
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end
         
-        def datetime_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, label_class: nil, div_class: nil)
+        def datetime_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} datetimepicker", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder, :value => (if v = object.send(fieldname); v.strftime('%Y-%m-%d %H:%M'); end))
           block_layout(fieldname, content, tip: tip, hint: hint, label_class: label_class, div_class: div_class, required: r)
         end           

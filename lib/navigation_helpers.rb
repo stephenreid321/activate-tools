@@ -8,7 +8,7 @@ module Activate
         if path.is_a? Array
           s << %Q{<li class="#{li_class} dropdown">}
           s << %Q{<a data-toggle="dropdown" class="#{a_class} dropdown-toggle" href="javascript:;">#{name} <b class="caret"></b></a>}
-          s << ul_nav('dropdown-menu', path, prefix: prefix, li_class: li_class, a_class: 'dropdown-item')
+          s << ul_nav(path, prefix: prefix, ul_class: 'dropdown-menu', li_class: li_class, a_class: 'dropdown-item')
           s << %Q{</li>}
         elsif path.nil?
           s << %Q{<li role="separator" class="divider"></li>}                          

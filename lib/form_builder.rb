@@ -68,14 +68,14 @@ module Padrino
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end  
         
-        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: 'form-check-label', div_class: nil)
+        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           r = nil
           content = ''          
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
           options.each { |k,v|
             content << %Q{
-              <div class="radio">
-                <label>
+              <div class="form-check">
+                <label class="form-check-label">
             }
             content << radio_button(fieldname, :class => "form-check-input #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :value => v, :checked => (v == checked), :required => (r = required || model_required(fieldname)), :disabled => disabled)
             content << %Q{
@@ -92,10 +92,10 @@ module Padrino
           options = Hash[*options.map { |x| [x,x] }.flatten] if options.is_a? Array
           options.each { |k,v|
             content << %Q{
-              <div class="checkbox">
-                <label>
+              <div class="form-check">
+               <label class="form-check-label"> 
             }                       
-            content << %Q{<input type="checkbox" name="#{model.to_s.underscore}[#{fieldname}][]" value="#{v}" #{'checked="checked"' if checked.include?(v)} #{'disabled="disabled"' if disabled}>}
+            content << %Q{<input class="form-check-input" type="checkbox" name="#{model.to_s.underscore}[#{fieldname}][]" value="#{v}" #{'checked="checked"' if checked.include?(v)} #{'disabled="disabled"' if disabled}>}
             content << %Q{
                 #{k}
               </label>
@@ -245,7 +245,7 @@ module Padrino
                 #{error_html}
                 #{hint_html}
               </label>
-            </div>
+              </div>
             }
           else
             block = %Q{

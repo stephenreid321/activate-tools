@@ -11,7 +11,7 @@ module Activate
           s << ul_nav(path, prefix: prefix, ul_class: 'dropdown-menu', li_class: li_class, a_class: 'dropdown-item')
           s << %Q{</li>}
         elsif path.nil?
-          s << %Q{<li role="separator" class="divider"></li>}                          
+          s << %Q{<li class="dropdown-divider"></li>}                          
         else
           path = "#{prefix}#{path}" if prefix
           s << %Q{<li}

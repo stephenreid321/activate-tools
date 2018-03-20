@@ -32,7 +32,7 @@
             var data = {};
             data[(options['id_param'] || $(element).attr('name'))] = id;
             data['rtype'] = options['rtype']
-            $.get(options['lookup_url'], data, function (data) {              
+            $.getJSON(options['lookup_url'], data, function (data) {              
               var result = data['results'].filter(function(result) {
                 return result['id'] == id
               })[0]

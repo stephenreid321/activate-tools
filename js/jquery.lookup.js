@@ -41,6 +41,8 @@
           }
         }
       });
+      
+      $(this).addClass('lookupd')
 
     });
   };

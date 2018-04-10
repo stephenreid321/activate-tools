@@ -15,18 +15,27 @@ $(function () {
     var form = this
     var pagelet = $(form).closest('[data-pagelet-url]')
     pagelet.css('opacity', '0.3')
-    var formData = new FormData(form);
-    $.ajax({
-      type: 'POST',
-      url: $(form).attr('action'),
-      data: formData,
-      processData: false,      
-      success: function () {
+    if (a) {
+      var formData = new FormData(form);
+      $.ajax({
+        type: 'POST',
+        url: $(form).attr('action'),
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function () {
+          pagelet.load(pagelet.attr('data-pagelet-url'), function () {
+            pagelet.css('opacity', '1')
+          })
+        }
+      });
+    } else {
+      $.post($(form).attr('action'), $(form).serialize(), function () {
         pagelet.load(pagelet.attr('data-pagelet-url'), function () {
           pagelet.css('opacity', '1')
         })
-      }
-    });
+      })
+    }
     return false
   })
 

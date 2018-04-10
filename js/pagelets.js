@@ -15,7 +15,7 @@ $(function () {
     var form = this
     var pagelet = $(form).closest('[data-pagelet-url]')
     pagelet.css('opacity', '0.3')
-    if (a) {
+    if ($(form).find('input[type=file]').length > 0) {
       var formData = new FormData(form);
       $.ajax({
         type: 'POST',

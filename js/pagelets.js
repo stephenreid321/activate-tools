@@ -20,8 +20,6 @@ $(function () {
       type: 'POST',
       url: $(form).attr('action'),
       data: formData,
-      processData: false,
-      contentType: false,
       success: function () {
         pagelet.load(pagelet.attr('data-pagelet-url'), function () {
           pagelet.css('opacity', '1')

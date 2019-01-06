@@ -31,7 +31,7 @@ module Activate
           end
           s << %Q{<li class="#{subnav_li_class}">}
           s << %Q{<a data-toggle="#{subnav_data_toggle}" class="#{subnav_a_class}" href="#{subnav_href}">#{name}#{subnav_caret}</a>}
-          s << ul_nav(path, prefix: prefix, ul_class: subnav_ul_class, ul_id: subnav_ul_id, li_class: subnav_li2_class, a_class: subnav_a2_class)
+          s << ul_nav(path, prefix: prefix, ul_class: subnav_ul_class, ul_id: subnav_ul_id, li_class: subnav_li2_class, li_active_class: li_active_class, a_class: subnav_a2_class, a_active_class: a_active_class)
           s << %Q{</li>}
         elsif path.nil?
           s << %Q{<li class="dropdown-divider"></li>}                          

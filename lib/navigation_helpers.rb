@@ -5,7 +5,9 @@ module Activate
         prefix: '',
         ul_class: 'navbar-nav',
         li_class: 'nav-item',
+        li_active_class: '',
         a_class: 'nav-link',
+        a_active_class: 'active',
         ul_id: '',
         subnav_li_class: 'nav-item dropdown',
         subnav_data_toggle: 'dropdown',                
@@ -36,9 +38,9 @@ module Activate
         else
           path = "#{prefix}#{path}" if prefix
           s << %Q{<li}
-          s << %Q{ class="#{li_class}" }
+          s << %Q{ class="#{li_class} #{li_active_class if request.path == path}" }
           s << %Q{>}
-          s << %Q{<a class="#{'active' if request.path == path} #{a_class}" href="#{path}">#{name}</a>}
+          s << %Q{<a class="#{a_active_class if request.path == path} #{a_class}" href="#{path}">#{name}</a>}
           s << %Q{</li>}
         end
       }

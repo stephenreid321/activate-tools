@@ -52,7 +52,7 @@ module Padrino
         
         # Selects and checkboxes
 
-        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: 'form-check-label', div_class: nil)
+        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'checkbox', label_class: nil, div_class: nil)
           content = check_box(fieldname, :class => "form-check-input #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end
@@ -235,11 +235,11 @@ module Padrino
                 <div class="invalid-feedback">#{error_message_on fieldname.to_s.gsub('_id',''), :prepend => model.human_attribute_name(fieldname)}</div>
           } : nil
                   
-          if container_class and container_class.include?('form-check')
+          if container_class and container_class.include?('checkbox')
             block = %Q{
             <div class="#{container_class}">
-              <label for="#{model.to_s.underscore}_#{fieldname}" class="#{label_class}">
-                #{content}
+              #{content}
+              <label for="#{model.to_s.underscore}_#{fieldname}" class="#{label_class}">                
                 #{model.human_attribute_name(fieldname)}#{'*' if required}
                 #{tip_html}
                 #{error_html}

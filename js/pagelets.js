@@ -63,8 +63,6 @@ $(function () {
       pagelet.css('opacity', '1')
       var offset = pagelet.offset()
       window.scrollTo(offset['left'], offset['top']);
-      if ($(pagelet).hasClass('infinite'))
-        pagelet.scrollTop = pagelet.scrollHeight;
     })
     return false
   })

@@ -60,7 +60,7 @@ $(function () {
     pagelet.load($(a).attr('href'), function () {
       pagelet.css('opacity', '1')
       var offset = pagelet.offset()
-      if (!$(a).attr('no-scroll'))
+      if (!$(a).closest('.pagination').hasClass('no-scroll'))
         window.scrollTo(offset['left'], offset['top']);
     })
     return false

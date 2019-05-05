@@ -15,7 +15,9 @@ $(function () {
     var form = this
     var pagelet = $(form).closest('[data-pagelet-url]')
     pagelet.css('opacity', '0.3')
-    if ($(form).find('input[type=file]').length > 0 && $(form).find('input[type=file]').map(function() { return $(this).val() }).toArray().join('') != '') {
+    if ($(form).find('input[type=file]').length > 0 && $(form).find('input[type=file]').map(function () {
+      return $(this).val()
+    }).toArray().join('') != '') {
       var formData = new FormData(form);
       $.ajax({
         type: 'POST',
@@ -60,8 +62,10 @@ $(function () {
     pagelet.load($(a).attr('href'), function () {
       pagelet.css('opacity', '1')
       var offset = pagelet.offset()
-      if (!$(a).closest('.pagination').hasClass('no-scroll'))
-        window.scrollTo(offset['left'], offset['top']);
+      window.scrollTo(offset['left'], offset['top']);
+      if ($(pagelet).hasClass('.infinite')) {
+        pagelet.scrollTop = pagelet.scrollHeight;
+      }
     })
     return false
   })

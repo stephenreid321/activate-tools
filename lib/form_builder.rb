@@ -63,7 +63,7 @@ module Padrino
         end  
         
         def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = hidden_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} lookup", :'data-lookup-url' => lookup_url, :placeholder => placeholder, :required => (r = required || model_required(fieldname)), :disabled => disabled)
+          content = hidden_field(fieldname, :class => "#{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?} lookup", :'data-lookup-url' => lookup_url, :placeholder => placeholder, :required => (r = required || model_required(fieldname)), :disabled => disabled)
           content << " #{selected_link}"
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
         end  

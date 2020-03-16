@@ -4,6 +4,11 @@ module Padrino
       class ActivateFormBuilder < AbstractFormBuilder
                         
         # Text
+        
+        def id_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+          content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class, label_class: label_class, div_class: div_class, required: r)
+        end        
                               
         def text_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = text_field(fieldname, :class => "form-control #{'is-invalid' if !error_message_on(fieldname.to_s.gsub('_id','')).blank?}", :required => (r = required || model_required(fieldname)), :disabled => disabled, :placeholder => placeholder)

@@ -1,5 +1,28 @@
 module Activate
   module NavigationHelpers
+    
+    def dropdown_nav(items,
+        container_class: 'btn-group',
+        container_id: '',
+        button_class: 'btn btn-outline-primary dropdown-toggle',
+        button_id: '',
+        button_text: '',
+        menu_class: 'dropdown-menu',
+        item_class: 'dropdown-item'      
+      )
+      
+      s = ''
+      s << %Q{<div class="#{container_class}" id="#{container_id}">}            
+      s << %Q{<button class="#{button_class}" type="button" id="#{button_id}" data-toggle="dropdown">#{button_text}</button>}
+      s << %Q{<div class="#{menu_class}">}
+      items.each { |name, path|
+        s << %Q{<a class="#{item_class}" href="#{path}">#{name}</a>}              
+      }
+      s << '</div>'
+      s << '</div>'
+      s
+    end
+
 
     def ul_nav(items,
         prefix: '',

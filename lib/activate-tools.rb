@@ -1,5 +1,4 @@
 require 'padrino'
-require 'datetime_helpers'
 require 'param_helpers'
 require 'navigation_helpers'
 

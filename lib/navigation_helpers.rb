@@ -8,7 +8,8 @@ module Activate
         button_id: '',
         button_text: '',
         menu_class: 'dropdown-menu',
-        item_class: 'dropdown-item'      
+        item_class: 'dropdown-item',
+        item_active_class: 'active'        
       )
       
       s = ''
@@ -16,7 +17,7 @@ module Activate
       s << %Q{<button class="#{button_class}" type="button" id="#{button_id}" data-toggle="dropdown">#{button_text}</button>}
       s << %Q{<div class="#{menu_class}">}
       items.each { |name, path|
-        s << %Q{<a class="#{item_class}" href="#{path}">#{name}</a>}              
+        s << %Q{<a class="#{item_class} #{item_active_class if request.path == path}" href="#{path}">#{name}</a>}              
       }
       s << '</div>'
       s << '</div>'

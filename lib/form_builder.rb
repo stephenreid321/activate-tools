@@ -141,7 +141,7 @@ module Padrino
             src = begin; URI.encode(url).gsub('(', '%28').gsub(')', '%29'); rescue; url; end            
             content << %Q{
             <div style="margin-bottom: 1em">
-              <a target="_blank" href="#{object.send(fieldname).url}"><img style="max-height: 200px" src="#{src}"></a>
+              <a target="_blank" href="#{url}"><img style="max-height: 200px" src="#{src}"></a>
             </div>
             <div>
               #{file_field(fieldname, :required => (r = required || model_required(fieldname)), :disabled => disabled)}

@@ -4,7 +4,5 @@ require 'navigation_helpers'
 
 module ActivateTools
   extend Padrino::Module
-  gem! "activate-tools"
+  gem! 'activate-tools'
 end
-
-String.send(:define_method, :html_safe?){ true }

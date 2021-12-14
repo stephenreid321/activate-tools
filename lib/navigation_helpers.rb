@@ -25,7 +25,7 @@ module Activate
       end
       s << '</div>'
       s << '</div>'
-      s
+      s.html_safe
     end
 
     def ul_nav(items,
@@ -57,7 +57,8 @@ module Activate
           end
           s << %(<li class="#{subnav_li_class}">)
           s << %(<a data-toggle="#{subnav_data_toggle}" class="#{subnav_a_class}" href="#{subnav_href}">#{name}#{subnav_caret}</a>)
-          s << ul_nav(path, prefix: prefix, ul_class: subnav_ul_class, ul_id: subnav_ul_id, li_class: subnav_li2_class, li_active_class: li_active_class, a_class: subnav_a2_class, a_active_class: a_active_class)
+          s << ul_nav(path, prefix: prefix, ul_class: subnav_ul_class, ul_id: subnav_ul_id, li_class: subnav_li2_class,
+                            li_active_class: li_active_class, a_class: subnav_a2_class, a_active_class: a_active_class)
           s << %(</li>)
         elsif path.nil?
           s << %(<li class="dropdown-divider"></li>)
@@ -71,6 +72,7 @@ module Activate
         end
       end
       s << %(</ul>)
+      s.html_safe
     end
   end
 end

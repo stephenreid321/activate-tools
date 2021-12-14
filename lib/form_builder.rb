@@ -119,7 +119,7 @@ module Padrino
                                  class: "#{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                              'is-invalid'
                                            end} lookup", 'data-lookup-url': lookup_url, placeholder: placeholder, required: (r = required || model_required(fieldname)), disabled: disabled)
-          content << " #{selected_link}"
+          content << " #{selected_link}".html_safe
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,
                                            label_class: label_class, div_class: div_class, required: r)
         end

@@ -67,6 +67,17 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
+        def shorturl_block(fieldname, stem: nil, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+          content = %(<span class="stem">#{stem}</span>) + text_field(fieldname,
+                                                                      class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
+                                                                                               'is-invalid'
+                                                                                             end} slug shorturl", required: (r = required || model_required(fieldname)), disabled: disabled, placeholder: placeholder) + (if object.persisted?
+                                                                                                                                                                                                                            %(<a href="javascript:;"><i class="fa fa-link"></i></a>)
+                                                                                                                                                                                                                          end)
+          block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,
+                                           label_class: label_class, div_class: div_class, required: r)
+        end
+
         def text_area_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = text_area(fieldname,
                               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?

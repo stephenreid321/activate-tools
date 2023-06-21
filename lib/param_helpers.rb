@@ -6,9 +6,10 @@ module Activate
       date_hashes_to_dates!(params)      
       file_hashes_to_files!(params)
       coordinate_hashes_to_coordinates!(params)              
-      blanks_to_nils!(params)      
+      blanks_to_nils!(params)    
+      fix_pages!(params)  
     end
-  
+            
     def datetime_hashes_to_datetimes!(hash)
       hash.each { |k,v|
         if v.is_a?(Hash) and [:year, :month, :day, :hour, :min].all? { |x| v.has_key?(x.to_s) }
@@ -66,6 +67,14 @@ module Activate
         end
       }
     end
+
+    def fix_pages!(hash)
+      hash.each do |k, v|
+        if k == 'page' || k.ends_with?('_page')
+          hash[k] = v.to_i == 0 ? 1 : v.to_i
+        end
+      end
+    end     
 
   end
 end

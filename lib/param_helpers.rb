@@ -70,7 +70,7 @@ module Activate
 
     def fix_pages!(hash)
       hash.each do |k, v|
-        if k == 'page' || k.ends_with?('_page')
+        if (k == 'page' || k.ends_with?('_page')) && v.is_a?(String)
           hash[k] = v.to_i == 0 ? 1 : v.to_i
         end
       end

@@ -27,3 +27,5 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+*.code-workspace

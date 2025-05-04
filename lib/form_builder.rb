@@ -194,9 +194,9 @@ module Padrino
                 #{file_field(fieldname, required: (r = required || model_required(fieldname)),
                                         disabled: disabled)}
               </div>
-              <div>
+              <label class="remove-on-save">
                 Remove #{check_box(:"remove_#{fieldname}", disabled: disabled)}
-              </div>
+              </label>
             )
           end
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,
@@ -231,9 +231,9 @@ module Padrino
               )
             end
             content << %(
-              <div>
+              <label class="remove-on-save">
                 Remove #{check_box(:"remove_#{fieldname}", disabled: disabled)}
-              </div>
+              </label>
             )
           end
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,

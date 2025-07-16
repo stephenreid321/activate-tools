@@ -8,6 +8,7 @@ module Activate
       coordinate_hashes_to_coordinates!(params)              
       blanks_to_nils!(params)    
       fix_pages!(params)  
+      clean_nested_destroy!(params)
     end
             
     def datetime_hashes_to_datetimes!(hash)
@@ -66,6 +67,21 @@ module Activate
           blanks_to_nils!(v)
         end
       }
+    end
+
+    def clean_nested_destroy!(hash)
+      hash.each do |k, v|
+        if k.to_s.ends_with?('_attributes') && v.is_a?(Hash)
+          v.each do |_, child_attributes|
+            next unless child_attributes.is_a?(Hash)
+
+            child_attributes.delete('_destroy') if child_attributes['_destroy'] == '0'
+            clean_nested_destroy!(child_attributes) # handle deeply nested forms
+          end
+        elsif v.is_a?(Hash)
+          clean_nested_destroy!(v)
+        end
+      end
     end
 
     def fix_pages!(hash)

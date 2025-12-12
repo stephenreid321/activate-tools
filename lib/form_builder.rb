@@ -208,12 +208,17 @@ module Padrino
           if !object.persisted? or !object.send(fieldname)
             content << file_field(fieldname)
           else
-            url = object.send(fieldname).url
-            src = begin; URI.encode(url).gsub('(', '%28').gsub(')', '%29'); rescue StandardError; url; end
-            content << %(
+            has_error = !error_message_on(fieldname.to_s.gsub('_id', '')).blank?
+            unless has_error
+              url = object.send(fieldname).url
+              src = begin; URI.encode(url).gsub('(', '%28').gsub(')', '%29'); rescue StandardError; url; end
+              content << %(
             <div style="margin-bottom: 1em">
               <a target="_blank" href="#{url}"><img style="max-height: 200px" src="#{src}"></a>
             </div>
+            )
+            end
+            content << %(
             <div>
               #{file_field(fieldname, required: (r = required || model_required(fieldname)), disabled: disabled)}
             </div>

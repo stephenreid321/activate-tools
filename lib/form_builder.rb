@@ -125,7 +125,7 @@ module Padrino
 
         def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           value = object.send(fieldname)
-          options = value.present? ? [['', value]] : []
+          options = value.present? ? [['', ''], ['', value]] : []
           content = select(fieldname,
                            class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                            'is-invalid'

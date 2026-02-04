@@ -124,10 +124,19 @@ module Padrino
         end
 
         def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
-          content = hidden_field(fieldname,
-                                 class: "#{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
-                                             'is-invalid'
-                                           end} lookup", 'data-lookup-url': lookup_url, placeholder: placeholder, required: (r = required || model_required(fieldname)), disabled: disabled)
+          value = object.send(fieldname)
+          options = value.present? ? [['', value]] : []
+          content = select(fieldname,
+                           class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
+                                                           'is-invalid'
+                                                         end} lookup",
+                           options: options,
+                           selected: value,
+                           'data-lookup-url': lookup_url,
+                           placeholder: placeholder,
+                           required: (r = required || model_required(fieldname)),
+                           disabled: disabled
+                           )
           content << " #{selected_link}".html_safe
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,
                                            label_class: label_class, div_class: div_class, required: r)

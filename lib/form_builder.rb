@@ -76,7 +76,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def text_area_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def text_area_block(fieldname, rows: 5, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = text_area(fieldname,
                               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                        'is-invalid'
@@ -85,7 +85,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def wysiwyg_block(fieldname, rows: 10, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def wysiwyg_block(fieldname, rows: 5, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
           content = text_area(fieldname,
                               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                        'is-invalid'

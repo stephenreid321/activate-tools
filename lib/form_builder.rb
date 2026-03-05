@@ -301,14 +301,16 @@ module Padrino
 
         # Submission
 
-        def submit_block(button_text: nil, destroy_url: nil, container_class: nil, div_class: nil)
+        def submit_block(button_text: nil, destroy_url: nil, container_class: nil, div_class: nil, disabled: false)
           button_text ||= object.new_record? ? "Create #{model.to_s.underscore.humanize.downcase}" : "Update #{model.to_s.underscore.humanize.downcase}"
+          disabled_attr = disabled ? ' disabled="disabled"' : ''
+          disabled_class = disabled ? ' disabled' : ''
           content = %(
             <div class="#{container_class}">
               <div class="#{div_class}">
-                <button class="btn btn-primary" type="submit">#{button_text}</button> )
+                <button class="btn btn-primary" type="submit"#{disabled_attr}>#{button_text}</button> )
           if !object.new_record? and destroy_url
-            content << %(<a class="btn btn-danger" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}">Delete</a>)
+            content << %(<a class="btn btn-danger#{disabled_class}" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}"#{disabled_attr}>Delete</a>)
           end
           content << %(
               </div>

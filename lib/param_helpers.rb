@@ -2,15 +2,30 @@ module Activate
   module ParamHelpers
 
     def fix_params!
-      datetime_hashes_to_datetimes!(params)      
-      date_hashes_to_dates!(params)      
+      reject_mongo_operators!(params)
+      datetime_hashes_to_datetimes!(params)
+      date_hashes_to_dates!(params)
       file_hashes_to_files!(params)
-      coordinate_hashes_to_coordinates!(params)              
-      blanks_to_nils!(params)    
-      fix_pages!(params)  
+      coordinate_hashes_to_coordinates!(params)
+      blanks_to_nils!(params)
+      fix_pages!(params)
       clean_nested_destroy!(params)
     end
-            
+
+    # Strip MongoDB query operators that arrive via nested params
+    # (e.g. ?api_key[$ne]=x => {"api_key"=>{"$ne"=>"x"}}), which otherwise
+    # flow into Mongoid find_by/where as operators (NoSQL injection).
+    def reject_mongo_operators!(value)
+      case value
+      when Hash
+        value.reject! { |k, _| k.to_s.start_with?('$') }
+        value.each_value { |v| reject_mongo_operators!(v) }
+      when Array
+        value.each { |v| reject_mongo_operators!(v) }
+      end
+      value
+    end
+
     def datetime_hashes_to_datetimes!(hash)
       hash.each { |k,v|
         if v.is_a?(Hash) and [:year, :month, :day, :hour, :min].all? { |x| v.has_key?(x.to_s) }

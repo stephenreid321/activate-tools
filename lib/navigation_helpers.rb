@@ -14,13 +14,20 @@ module Activate
       s << %(<div class="#{container_class}" id="#{container_id}">)
       s << %(<button class="#{button_class}" type="button" id="#{button_id}" data-toggle="dropdown">#{button_text}</button>)
       s << %(<div class="#{menu_class}">)
-      items.each do |name, path|
+      items.each do |item|
+        name, path, attrs = item
         s << if name.nil?
                %(<div class="dropdown-divider"></div>)
              elsif path.nil?
                %(<h6 class="dropdown-header">#{name}</h6>)
              else
-               %(<a class="#{item_class} #{item_active_class if request.path == path}" href="#{path}">#{name}</a>)
+               attr_str = ''
+               if attrs.is_a?(Hash)
+                 attrs.each do |k, v|
+                   attr_str << %( #{k}="#{ERB::Util.html_escape(v)}")
+                 end
+               end
+               %(<a class="#{item_class} #{item_active_class if request.path == path}" href="#{path}"#{attr_str}>#{name}</a>)
              end
       end
       s << '</div>'

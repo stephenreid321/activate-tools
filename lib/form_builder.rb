@@ -310,7 +310,7 @@ module Padrino
               <div class="#{div_class}">
                 <button class="btn btn-primary" type="submit"#{disabled_attr}>#{button_text}</button> )
           if !object.new_record? and destroy_url
-            content << %(<a class="btn btn-danger#{disabled_class}" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}"#{disabled_attr}>Delete</a>)
+            content << %(<a class="btn btn-danger#{disabled_class}" data-method="post" data-confirm="Are you sure you want to delete this #{model.to_s.underscore.humanize.downcase}?" href="#{destroy_url}"#{disabled_attr}>Delete</a>)
           end
           content << %(
               </div>

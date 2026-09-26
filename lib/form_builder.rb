@@ -197,7 +197,7 @@ module Padrino
           else
             content << %(
               <div>
-                <i class="fa fa-download"></i> <a target="_blank" href="#{object.send(fieldname).url}">#{object.send(fieldname).name}</a>
+                <i class="fa fa-download"></i> <a target="_blank" href="#{ERB::Util.html_escape(object.send(fieldname).url)}">#{ERB::Util.html_escape(object.send(fieldname).name)}</a>
               </div>
               <div>
                 #{file_field(fieldname, required: (r = required || model_required(fieldname)),

@@ -204,7 +204,7 @@ module Padrino
                                         disabled: disabled)}
               </div>
               <label class="remove-file">
-                Remove #{check_box(:"remove_#{fieldname}", disabled: disabled)}
+                Remove #{check_box(:"remove_#{fieldname}", class: 'form-check-input', disabled: disabled)}
               </label>
             )
           end
@@ -246,7 +246,7 @@ module Padrino
             end
             content << %(
               <label class="remove-image">
-                Remove #{check_box(:"remove_#{fieldname}", disabled: disabled)}
+                Remove #{check_box(:"remove_#{fieldname}", class: 'form-check-input', disabled: disabled)}
               </label>
             )
           end

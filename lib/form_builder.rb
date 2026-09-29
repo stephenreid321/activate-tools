@@ -193,14 +193,14 @@ module Padrino
         def file_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = ''
           if !object.persisted? or !object.send(fieldname)
-            content << file_field(fieldname)
+            content << file_field(fieldname, class: 'form-control')
           else
             content << %(
               <div>
                 <i class="fa fa-download"></i> <a target="_blank" href="#{ERB::Util.html_escape(object.send(fieldname).url)}">#{ERB::Util.html_escape(object.send(fieldname).name)}</a>
               </div>
               <div>
-                #{file_field(fieldname, required: (r = required || model_required(fieldname)),
+                #{file_field(fieldname, class: 'form-control', required: (r = required || model_required(fieldname)),
                                         disabled: disabled)}
               </div>
               <label class="remove-file">
@@ -215,7 +215,7 @@ module Padrino
         def image_block(fieldname, rotate: true, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = ''
           if !object.persisted? or !object.send(fieldname)
-            content << file_field(fieldname)
+            content << file_field(fieldname, class: 'form-control')
           else
             has_error = !error_message_on(fieldname.to_s.gsub('_id', '')).blank?
             unless has_error
@@ -229,7 +229,7 @@ module Padrino
             end
             content << %(
             <div>
-              #{file_field(fieldname, required: (r = required || model_required(fieldname)), disabled: disabled)}
+              #{file_field(fieldname, class: 'form-control', required: (r = required || model_required(fieldname)), disabled: disabled)}
             </div>
             )
             if object.respond_to?(:"rotate_#{fieldname}_by") and rotate

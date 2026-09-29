@@ -12,7 +12,7 @@ module Activate
 
       s = ''
       s << %(<div class="#{container_class}" id="#{container_id}">)
-      s << %(<button class="#{button_class}" type="button" id="#{button_id}" data-toggle="dropdown">#{button_text}</button>)
+      s << %(<button class="#{button_class}" type="button" id="#{button_id}" data-bs-toggle="dropdown">#{button_text}</button>)
       s << %(<div class="#{menu_class}">)
       items.each do |item|
         name, path, attrs = item
@@ -63,7 +63,7 @@ module Activate
             subnav_ul_id = uuid
           end
           s << %(<li class="#{subnav_li_class}">)
-          s << %(<a data-toggle="#{subnav_data_toggle}" class="#{subnav_a_class}" href="#{subnav_href}">#{name}#{subnav_caret}</a>)
+          s << %(<a data-bs-toggle="#{subnav_data_toggle}" class="#{subnav_a_class}" href="#{subnav_href}">#{name}#{subnav_caret}</a>)
           s << ul_nav(path, prefix: prefix, ul_class: subnav_ul_class, ul_id: subnav_ul_id, li_class: subnav_li2_class,
                             li_active_class: li_active_class, a_class: subnav_a2_class, a_active_class: a_active_class)
           s << %(</li>)

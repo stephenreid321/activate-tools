@@ -4,7 +4,7 @@ module Padrino
       class ActivateFormBuilder < AbstractFormBuilder
         # Text
 
-        def id_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def id_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_field(fieldname,
                                class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                         'is-invalid'
@@ -13,7 +13,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def text_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def text_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_field(fieldname,
                                class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                         'is-invalid'
@@ -22,7 +22,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def number_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def number_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = number_field(fieldname,
                                  class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                           'is-invalid'
@@ -31,7 +31,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def email_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def email_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = email_field(fieldname,
                                 class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                          'is-invalid'
@@ -40,7 +40,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def url_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def url_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = url_field(fieldname,
                               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                        'is-invalid'
@@ -49,7 +49,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def password_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def password_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = password_field(fieldname,
                                    class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                             'is-invalid'
@@ -58,7 +58,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def slug_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def slug_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_field(fieldname,
                                class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                         'is-invalid'
@@ -67,7 +67,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def shorturl_block(fieldname, stem: nil, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def shorturl_block(fieldname, stem: nil, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = %(<span class="stem">#{stem}</span>) + text_field(fieldname,
                                                                       class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                                                                'is-invalid'
@@ -76,7 +76,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def text_area_block(fieldname, rows: 5, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def text_area_block(fieldname, rows: 5, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_area(fieldname,
                               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                        'is-invalid'
@@ -85,7 +85,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def wysiwyg_block(fieldname, rows: 5, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def wysiwyg_block(fieldname, rows: 5, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_area(fieldname,
                               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                        'is-invalid'
@@ -94,7 +94,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def color_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def color_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_field(fieldname,
                                class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                         'is-invalid'
@@ -105,7 +105,7 @@ module Padrino
 
         # Selects and checkboxes
 
-        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'checkbox', label_class: nil, div_class: nil)
+        def check_box_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-check', label_class: 'form-check-label', div_class: nil)
           content = check_box(fieldname,
                               class: "form-check-input #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                            'is-invalid'
@@ -114,20 +114,20 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def select_block(fieldname, options: model.send(fieldname.to_s.pluralize), selected: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = select(fieldname,
-                           class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
+                           class: "form-select #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                     'is-invalid'
-                                                  end}", options: options, selected: selected, required: (r = required || model_required(fieldname)), disabled: disabled)
+                                                 end}", options: options, selected: selected, required: (r = required || model_required(fieldname)), disabled: disabled)
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def lookup_block(fieldname, lookup_url: nil, placeholder: nil, selected_link: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           value = object.send(fieldname)
           options = value.present? ? [['', ''], ['', value]] : []
           content = select(fieldname,
-                           class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
+                           class: "form-select #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                            'is-invalid'
                                                          end} lookup",
                            options: options,
@@ -142,7 +142,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def radio_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: object.send(fieldname), required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           r = nil
           content = ''
           options = Hash[*options.map { |x| [x, x] }.flatten] if options.is_a? Array
@@ -165,7 +165,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def check_boxes_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: [], disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def check_boxes_block(fieldname, options: model.send(fieldname.to_s.pluralize), checked: [], disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = ''
           options = Hash[*options.map { |x| [x, x] }.flatten] if options.is_a? Array
           options.each do |k, v|
@@ -190,7 +190,7 @@ module Padrino
 
         # Files and images
 
-        def file_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def file_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = ''
           if !object.persisted? or !object.send(fieldname)
             content << file_field(fieldname)
@@ -212,7 +212,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def image_block(fieldname, rotate: true, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def image_block(fieldname, rotate: true, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = ''
           if !object.persisted? or !object.send(fieldname)
             content << file_field(fieldname)
@@ -235,12 +235,12 @@ module Padrino
             if object.respond_to?(:"rotate_#{fieldname}_by") and rotate
               content << %(
                 <div class="input-group" style="width: 13em">
-                  <span style="display: table-cell">Rotate by</span>
+                  <span class="input-group-text">Rotate by</span>
                   #{select(:"rotate_#{fieldname}_by", options: ['', '90', '180', '270'],
-                                                      class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
+                                                      class: "form-select #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                                                'is-invalid'
-                                                                             end}", disabled: disabled)}
-                  <span class="input-group-addon">&deg;</span>
+                                                                            end}", disabled: disabled)}
+                  <span class="input-group-text">&deg;</span>
                 </div>
               )
             end
@@ -256,7 +256,7 @@ module Padrino
 
         # Dates and times
 
-        def date_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def date_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = text_field(fieldname, class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                                    'is-invalid'
                                                                  end} datepicker", required: (r = required || model_required(fieldname)), disabled: disabled, placeholder: placeholder, value: (if v = object.send(fieldname)
@@ -266,7 +266,7 @@ module Padrino
                                            label_class: label_class, div_class: div_class, required: r)
         end
 
-        def datetime_block(fieldname, placeholder: nil, required: false, disabled: false, data: {}, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def datetime_block(fieldname, placeholder: nil, required: false, disabled: false, data: {}, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
         content = text_field(fieldname, class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                                                                  'is-invalid'
                                                                end} datetimepicker", required: (r = required || model_required(fieldname)), disabled: disabled, placeholder: placeholder, value: (if v = object.send(fieldname)
@@ -278,7 +278,7 @@ module Padrino
 
         # Geopicker
 
-        def geopicker_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def geopicker_block(fieldname, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = ''
           content << %(<div class="geopicker">)
           content << @template.hidden_field_tag("#{model.to_s.underscore}[#{fieldname}][lat]",
@@ -321,11 +321,9 @@ module Padrino
 
         # Currency
 
-        def currency_block(fieldname, money_symbol: '$', placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def currency_block(fieldname, money_symbol: '$', placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = %(<div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text money-symbol">#{money_symbol}</span>
-            </div>) +
+            <span class="input-group-text money-symbol">#{money_symbol}</span>) +
             number_field(fieldname,
               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
                               'is-invalid'
@@ -342,7 +340,7 @@ module Padrino
 
         # Percentage
 
-        def percentage_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'form-group', label_class: nil, div_class: nil)
+        def percentage_block(fieldname, placeholder: nil, required: false, disabled: false, tip: nil, hint: nil, container_class: 'mb-3', label_class: nil, div_class: nil)
           content = %(<div class="input-group">) +
             number_field(fieldname,
               class: "form-control #{unless error_message_on(fieldname.to_s.gsub('_id', '')).blank?
@@ -353,9 +351,7 @@ module Padrino
               disabled: disabled,
               placeholder: placeholder) +
           %(
-            <div class="input-group-append">
-              <span class="input-group-text">%</span>
-            </div>          
+            <span class="input-group-text">%</span>
           </div>)
           
           block_layout(fieldname, content, tip: tip, hint: hint, container_class: container_class,
@@ -392,7 +388,7 @@ module Padrino
                  end
           hint_html = if hint
                         %(
-                <small class="form-text text-muted">#{hint}</small>
+                <small class="form-text">#{hint}</small>
           )
                       end
 
@@ -403,7 +399,7 @@ module Padrino
           )
                        end
 
-          block = if container_class and container_class.include?('checkbox')
+          block = if container_class and container_class.include?('form-check')
                     %(
             <div class="#{container_class}">
               #{content}
